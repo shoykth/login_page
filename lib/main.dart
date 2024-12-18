@@ -26,14 +26,13 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  // Method to validate email
   bool validateEmail(String email) {
     return EmailValidator.validate(email);
   }
 
   // Password validation
   bool _isSecurePassword = true;
-  String _passwordError = ''; // To store password validation message
+  String _passwordError = '';
 
   Widget togglePassword() {
     return IconButton(
@@ -84,6 +83,7 @@ class _LoginState extends State<Login> {
                     hintText: "Enter Email",
                     prefixIcon: Icon(Icons.mail),
                     border: OutlineInputBorder(),
+                    errorText: _passwordError.isEmpty ? null : _passwordError,
                   ),
                 ),
               ),
@@ -106,7 +106,7 @@ class _LoginState extends State<Login> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  _passwordError = ''; // Clear previous error message
+                  _passwordError = '';
 
                   // Validate email and password
                   if (validateEmail(email.text)) {
@@ -124,7 +124,7 @@ class _LoginState extends State<Login> {
               child: Text('Sign Up'),
             ),
             Text(name.text),
-            Text(email.text), // Display entered email for feedback
+            Text(email.text),
           ],
         ),
       ),
